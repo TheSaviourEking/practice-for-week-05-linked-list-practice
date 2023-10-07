@@ -1,38 +1,38 @@
 class LinkedListNode {
-  constructor(val, next = null) { // add next, was originallally only val
+  constructor(val) {
     this.value = val;
-    this.next = next;
+    this.next = null;
   }
 }
 
 class LinkedList {
-  constructor(head = null) {
+  constructor() {
     // Your code here
-    this.head = head;
+    this.head = null;
     this.length = 0;
   }
 
   addToHead(val) {
     // Your code here
-    this.head = new LinkedListNode(val, this.head);
+    let newNode = new LinkedListNode(val);
+    newNode.next = this.head;
+
+    this.head = newNode;
     this.length++;
   }
 
   addToTail(val) {
     // Your code here
-    let newNode = new LinkedListNode(val, null);
-    this.length++;
-    if (!this.head) {
-      this.head = newNode;
-    } else {
+    let newNode = new LinkedListNode(val);
+    if (!this.head) this.head = newNode;
+    else {
       let currentNode = this.head;
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
       currentNode.next = newNode;
     }
-
-
+    this.length++;
   }
 
   // You can use this function to help debug
@@ -47,16 +47,5 @@ class LinkedList {
     console.log("NULL");
   }
 }
-let linkedList = new LinkedList();
-linkedList.addToHead(1);
-// linkedList.addToHead(2);
-// linkedList.addToHead(3);
 
-// linkedList.addToTail(1);
-// linkedList.addToTail(2);
-linkedList.addToTail(3);
-
-// console.log(linkedList.head.next)
-// console.log(linkedList.head)
-linkedList.print()
 module.exports = LinkedList;
